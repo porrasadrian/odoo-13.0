@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="bluemetric_arribos_action" model="ir.actions.act_window">
+        <field name="name">bluemetric arribos</field>
+        <field name="res_model">bluemetric.arribos</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+    <menuitem id="bluemetric_arribos_menu" name="Bluemetric Arribos" web_icon="bluemetric_arribos,static/description/icon.png"/>
+    <menuitem id="bluemetric_arribos_menu_child"  parent="bluemetric_arribos_menu" action="bluemetric_arribos_action"/>
+</odoo>

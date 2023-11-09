@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="filter_account_move_inherit_view" model="ir.ui.view">
+        <field name="name">account.move</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="invoice_line_ids" string="Productos"/>
+                <filter name="state" domain="[('state','!=','cancel')]" string="No Canceladas"/>
+            </xpath>
+        </field>
+    </record>
+
+
+      <record id="account_form_inherit_view" model="ir.ui.view">
+        <field name="name">account.move</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page/field[@name='invoice_line_ids']/tree/field[@name='product_id']"
+                   position="attributes">
+                <attribute name="options">
+                    {'no_quick_create':True,'no_create_edit':True,'no_create':True,'no_open':True}
+                </attribute>
+            </xpath>
+
+             <xpath expr="//field[@name='partner_id']" position="after">
+
+                    <field name="estado_republica" readonly="1"/>
+
+             </xpath>
+
+
+        </field>
+    </record>
+
+     <record id="account_form_cube_record_inherit_view" model="ir.ui.view">
+        <field name="name">account.move</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="cube48_account_invoice_pricelist.view_move_customer_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='pricelist_id']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="purchase_order_inherit_arribos_view_form" model="ir.ui.view">
+        <field name="name">purchase.order</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="n_invoice"/>
+                <field name="provider_name"/>
+                <field name="payment_date"/>
+                <field name="type_trip"/>
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="customs_arrival_date"/>
+                <field name="warehouse_arrival_date"/>
+                <field name="date_capture"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

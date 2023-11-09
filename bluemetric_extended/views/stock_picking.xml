@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="stock_picking_inherit_view" model="ir.ui.view">
+        <field name="name">stock.picking</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="pago_dhl"/>
+
+
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_picking_inherit_view_tree" model="ir.ui.view">
+        <field name="name">stock.picking</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="bluemetric_tools.delivery_orders_tree_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='guia_envio']" position="after">
+                <field name="pago_dhl"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="search_filter_stock_picking" model="ir.ui.view">
+        <field name="name">search.view</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="bluemetric_tools.view_delivery_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="partner_id" string="Cliente"/>
+                <field name="invoice" string="Factura" filter_domain="[('invoice.name','ilike',self)]"/>
+
+
+            </xpath>
+
+
+        </field>
+    </record>
+
+
+</odoo>

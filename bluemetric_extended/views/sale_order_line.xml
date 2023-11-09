@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_sale_order_line_list_inherited_tree_view" model="ir.ui.view">
+        <field name="name">sale.order.line.list.inherited</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='order_id']" position="after">
+                <field name="fuente" optional="show"/>
+                <field name="equipo" optional="show"/>
+                <field name="date" optional="show"/>
+                <field name="create_date" optional="show"/>
+                <field name="total_amount" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='price_subtotal']" position="after">
+                 <field name="price_tax" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_line_list_inherited_filter_view" model="ir.ui.view">
+        <field name="name">sale.order.line.filter</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/group/filter[@name='order']" position="after">
+                <filter name="fuente" string="Fuente" domain="[]" context="{'group_by': 'fuente'}"/>
+                <filter string="Equipo de ventas" name="equipo" domain="[]" context="{'group_by':'equipo'}"/>
+                <filter name="date" string="Fecha de cotizacion" domain="[]" context="{'group_by': 'date'}"/>
+                <filter name="order_group" string="Pedido" domain="[]" context="{'group_by': 'order_group'}"/>
+                <filter name="quote_group" string="Presupuesto" domain="[]" context="{'group_by': 'quote_group'}"/>
+                <filter name="sent_quote_group" string="Presupuesto Enviado" domain="[]"
+                        context="{'group_by': 'sent_quote_group'}"/>
+                <filter string="Hoy" name="date" domain="[('date','&gt;=',time.strftime('%Y-%m-%d'))]"/>
+                <filter name="date" string="Fecha de cotizacion" date="date"/>
+            </xpath>
+        </field>
+    </record>
+
+     <record id="view_sale_order_line_pivot_inherit_view" model="ir.ui.view">
+            <field name="name">sale.order.line</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <pivot>
+                  <field name="date" type="row"/>
+                  <field name="total_amount" type="measure" string="Total"/>
+                </pivot>
+            </field>
+        </record>
+
+
+</odoo>

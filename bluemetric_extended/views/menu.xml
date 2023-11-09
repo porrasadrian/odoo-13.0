@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Acción del menú -->
+    <record id="action_sale_order_line_menu" model="ir.actions.act_window">
+        <field name="name">Reporte de ventas</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">tree,pivot,form</field>
+        <field name="domain">[('product_id','!=',5546)]</field>
+    </record>
+
+    <!-- Menú principal -->
+    <menuitem id="menu_sale_order_line" name="Reporte de ventas" parent="sale.menu_sale_report" sequence="6"/>
+    <menuitem id="menu_sale_order_line_list" name="Reporte de ventas" parent="menu_sale_order_line"
+              action="action_sale_order_line_menu"/>
+
+</odoo>

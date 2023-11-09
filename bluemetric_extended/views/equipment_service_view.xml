@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="equipment_service_view_form" model="ir.ui.view">
+        <field name="name">equipment_service</field>
+        <field name="model">equipment.service</field>
+        <field name="inherit_id" ref="equipment_service.equipment_service_request_form_view"/>
+        <field name="arch" type="xml">
+           <xpath expr="//field[@name='person_name']" position="attributes">
+              <attribute name="options">{'no_quick_create':True,'no_create_edit':True,'no_create':True,'no_open':True}</attribute>
+          </xpath>
+        </field>
+    </record>
+</odoo>

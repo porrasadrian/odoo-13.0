@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="bluemetric_arribos_view_form" model="ir.ui.view">
+        <field name="name">bluemetric.arribos</field>
+        <field name="model">bluemetric.arribos</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="n_invoice"/>
+                            <field name="provider_name"/>
+                            <field name="payment_date"/>
+                            <field name="type_trip"/>
+                        </group>
+                        <group>
+                            <field name="customs_arrival_date"/>
+                            <field name="warehouse_arrival_date"/>
+                            <field name="date_capture"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="bluemetric_arribos_tree_view" model="ir.ui.view">
+        <field name="name">bluemetric.arribos</field>
+        <field name="model">bluemetric.arribos</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="n_invoice"/>
+                <field name="provider_name"/>
+                <field name="payment_date"/>
+                <field name="type_trip"/>
+                <field name="customs_arrival_date"/>
+                <field name="warehouse_arrival_date"/>
+                <field name="date_capture"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

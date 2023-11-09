@@ -1,0 +1,11 @@
+<odoo>
+     <record id="hide_fields_bluemetric" model="ir.module.category">
+        <field name="name"></field>
+    </record>
+    <!--GRUPO DE SEGURIDAD -->
+    <record id="bank_conciliation_group_user" model="res.groups">
+        <field name="name">Bancos</field>
+        <field name="category_id" ref="hide_fields_bluemetric"/>
+        <field name="implied_ids" eval="[(4,ref('base.group_user'))]"/>
+    </record>
+</odoo>

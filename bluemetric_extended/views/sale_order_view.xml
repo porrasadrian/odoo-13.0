@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sale_order_inherit_form_view" model="ir.ui.view">
+        <field name="name">sale.order.form.view.inh</field>
+        <field name="model">sale.order</field>
+        <field name="priority" eval="99"/>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="date"/>
+                <field name="comments"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="sale_order_inherit_tree_view" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="date" optional="show"/>
+            </xpath>
+            <tree>
+                <button name="button_method" string="Comentarios" type="object"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="comments_form" model="ir.ui.view">
+        <field name="name">Comentarios en vista tree</field>
+        <field name="model">wizard.comments</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>Comentarios</header>
+                <field name="comments" readonly="1"/>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="filter_sale_order_inherit_view" model="ir.ui.view">
+        <field name="name">filter.sale.order</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter string="Hoy" name="date"
+                        domain="[('date','&gt;=',time.strftime('%%Y-%%m-%%d'))]"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="sale_order_rename_tree_inh_view" model="ir.ui.view">
+        <field name="name">sale.order.rename.tree.inh.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="string">Vendedor</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!-- Codigo para deshabilitar el quick_Create del product_id de ventas -->
+    <record id="sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.view.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='product_id']"
+                   position="attributes">
+                <attribute name="options">
+                    {'no_quick_create':True,'no_create_edit':True,'no_create':True,'no_open':True}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Codigo para deshabilitar el quick_Create del product_id de ventas -->
+
+    <!-- Codigo para deshabilitar el quick_Create del product_id de productos opcionales de ventas -->
+
+    <record id="sale_order_management_inherit_view" model="ir.ui.view">
+        <field name="name">sale.order.management</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_management.sale_order_form_quote"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page/field[@name='sale_order_option_ids']/tree/field[@name='product_id']"
+                   position="attributes">
+                <attribute name="options">
+                    {'no_quick_create':True,'no_create_edit':True,'no_create':True,'no_open':True}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Codigo para deshabilitar el quick_Create del product_id de productos opcionales de ventas -->
+
+    <!-- Modificacion de vista pivote -->
+    
+</odoo>
